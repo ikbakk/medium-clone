@@ -17,7 +17,7 @@ const Home = ({ posts }: Props) => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Banner />
-			<Posts />
+			<Posts posts={posts} />
 		</div>
 	);
 };
@@ -28,8 +28,7 @@ export const getServerSideProps = async () => {
 	const query = `*[_type =='post' ]{
     _id,
     title,
-    author,
-    author=>{
+    author->{
       name,
       image
     },
