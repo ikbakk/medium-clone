@@ -10,7 +10,6 @@ interface Props {
 }
 
 function Post({ post }: Props) {
-	console.log();
 	return (
 		<>
 			<Head>
