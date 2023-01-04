@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import { sanityClient } from '../../sanity';
 import { Post } from '../../typing';
+import { urlFor } from '../../sanity';
 
 interface Props {
 	post: Post;
@@ -8,7 +9,17 @@ interface Props {
 
 function Post({ post }: Props) {
 	console.log(post);
-	return <div>Post</div>;
+	return (
+		<div>
+			<article className='mx-auto max-w-3xl p-5'>
+				<h1 className='mt-10 mb-3 text-4xl'>{post.title}</h1>
+				<h2 className='text-xl font-light'>{post.description}</h2>
+				<div>
+					<img src={urlFor(post.author.image).url()} alt='/' />
+				</div>
+			</article>
+		</div>
+	);
 }
 
 export default Post;
@@ -42,8 +53,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       name,
       image
     },
-    'comments': *[_type == "comment" && post._ref == *._id && approved == true],
     description,
+    'comments': *[_type == "comment" && post._ref == *._id && approved == true],
     mainImage,
     slug,
     body
