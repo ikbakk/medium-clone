@@ -1,0 +1,8 @@
+{
+	"prettier.singleQuote": true,
+	"prettier.jsxSingleQuote": true,
+	"prettier.trailingComma": "none",
+	"prettier.useTabs": true,
+	"prettier.semi": true,
+	"javascript.format.semicolons": "insert"
+}
