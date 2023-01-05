@@ -1,5 +1,6 @@
 import PortableText from 'react-portable-text';
 import Head from 'next/head';
+import PostContent from '../../components/PostContent';
 import { GetStaticProps } from 'next';
 import { sanityClient } from '../../sanity';
 import { Post } from '../../typing';
@@ -10,6 +11,7 @@ interface Props {
 }
 
 function Post({ post }: Props) {
+	const date: string = new Date(post._createdAt).toLocaleDateString();
 	return (
 		<>
 			<Head>
@@ -19,7 +21,7 @@ function Post({ post }: Props) {
 			<article className='mx-auto max-w-3xl p-5'>
 				<h1 className='mt-10 mb-3 text-4xl'>{post.title}</h1>
 				<h2 className='text-xl font-light'>{post.description}</h2>
-				<div className='flex items-center space-x-2'>
+				<div className='flex items-center space-x-2 pt-3'>
 					<img
 						className='h-10 w-10 rounded-full'
 						src={urlFor(post.author.image).url()}
@@ -28,7 +30,7 @@ function Post({ post }: Props) {
 					<p className=' text-sm font-extralight'>
 						Blog post by{' '}
 						<span className='text-green-600'>{post.author.name}</span> -
-						Published at {new Date(post._createdAt).toLocaleString()}
+						Published at {date}
 					</p>
 				</div>
 				<div className='mt-10'>
@@ -54,6 +56,33 @@ function Post({ post }: Props) {
 						}}
 					/>
 				</div>
+				<hr className='my-5 mx-auto max-w-lg border border-yellow-500' />
+				<form className='m-w-2xl mx-auto mb-10 flex flex-col p-5'>
+					<label className='mb-5 block '>
+						<span className=' text-gray-800'>Name</span>
+						<input
+							className='mt-1 block w-full rounded border border-yellow-500 py-2 px-3 shadow ring-yellow-500 hover:ring focus:outline-none focus:ring '
+							placeholder='John Connor'
+							type='text'
+						/>
+					</label>
+					<label className='mb-5 block '>
+						<span className=' text-gray-800'>Email</span>
+						<input
+							className='mt-1 block w-full rounded border border-yellow-500 py-2 px-3 shadow ring-yellow-500 hover:ring focus:outline-none focus:ring'
+							placeholder='example@email.com'
+							type='email'
+						/>
+					</label>
+					<label className='mb-5 block '>
+						<span className=' text-gray-800'>Comment</span>
+						<textarea
+							className='mt-1 block w-full rounded border border-yellow-500 py-2 px-3  shadow ring-yellow-500 hover:ring focus:outline-none focus:ring'
+							placeholder='John Approved this'
+							rows={8}
+						/>
+					</label>
+				</form>
 			</article>
 		</>
 	);
