@@ -76,6 +76,10 @@ const PostCommentForm = ({ post }: Props) => {
 					{errors.email && <span>- The Email Field is required</span>}
 					{errors.comment && <span>- The Comment Field is required</span>}
 				</div>
+				<input
+					className='focus:shadow-outline cursor-pointer rounded bg-yellow-500 py-2 px-4 font-bold text-white shadow hover:bg-yellow-400 focus:outline-none'
+					type='submit'
+				/>
 			</form>
 		</>
 	);
