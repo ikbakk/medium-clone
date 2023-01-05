@@ -4,6 +4,7 @@ import PostCommentForm from '../../components/PostCommentForm';
 import { GetStaticProps } from 'next';
 import { sanityClient } from '../../sanity';
 import { Post } from '../../typing';
+import PostCommentsShown from '../../components/PostCommentsShown';
 
 interface Props {
 	post: Post;
@@ -20,6 +21,7 @@ function Post({ post }: Props) {
 				<PostContent post={post} />
 				<hr className='my-5 mx-auto max-w-lg border border-yellow-500' />
 				<PostCommentForm post={post} />
+				<PostCommentsShown post={post} />
 			</article>
 		</>
 	);
