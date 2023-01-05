@@ -37,9 +37,20 @@ const PostCommentForm = ({ post }: Props) => {
 		formState: { errors }
 	} = useForm<FormInput>();
 
+	const onSubmit: SubmitHandler<FormInput> = async (data) => {
+		await fetch('/api/createComment', {
+			method: 'POST',
+			body: JSON.stringify(data)
+		})
+			.then(() => console.log(data))
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<>
-			<form className='m-w-2xl mx-auto mb-10 flex flex-col p-5'>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className='m-w-2xl mx-auto mb-10 flex flex-col p-5'>
 				<h3 className='text-sm text-yellow-500'>Enjoyed this article?</h3>
 				<h2 className='text-3xl font-bold'>Leave a comment below</h2>
 				<hr className='mt-2 py-3' />
@@ -77,7 +88,7 @@ const PostCommentForm = ({ post }: Props) => {
 					{errors.comment && <span>- The Comment Field is required</span>}
 				</div>
 				<input
-					className='focus:shadow-outline cursor-pointer rounded bg-yellow-500 py-2 px-4 font-bold text-white shadow hover:bg-yellow-400 focus:outline-none'
+					className='focus:`shadow-outline cursor-pointer rounded bg-yellow-500 py-2 px-4 font-bold text-white shadow hover:bg-yellow-400 focus:outline-none'
 					type='submit'
 				/>
 			</form>
