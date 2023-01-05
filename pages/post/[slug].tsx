@@ -1,11 +1,9 @@
-import PortableText from 'react-portable-text';
 import Head from 'next/head';
 import PostContent from '../../components/PostContent';
 import PostCommentForm from '../../components/PostCommentForm';
 import { GetStaticProps } from 'next';
 import { sanityClient } from '../../sanity';
 import { Post } from '../../typing';
-import { urlFor } from '../../sanity';
 
 interface Props {
 	post: Post;
@@ -21,7 +19,7 @@ function Post({ post }: Props) {
 			<article className='mx-auto max-w-3xl p-5'>
 				<PostContent post={post} />
 				<hr className='my-5 mx-auto max-w-lg border border-yellow-500' />
-				<PostCommentForm />
+				<PostCommentForm post={post} />
 			</article>
 		</>
 	);
