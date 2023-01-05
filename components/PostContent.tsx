@@ -24,6 +24,8 @@ interface Props {
 }
 
 const PostContent = ({ post }: Props) => {
+	const date: string = new Date(post._createdAt).toLocaleDateString();
+
 	return (
 		<>
 			<h1 className='mt-10 mb-3 text-4xl'>{post.title}</h1>
@@ -37,7 +39,7 @@ const PostContent = ({ post }: Props) => {
 				<p className=' text-sm font-extralight'>
 					Blog post by{' '}
 					<span className='text-green-600'>{post.author.name}</span> - Published
-					at {new Date(post._createdAt).toLocaleString()}
+					at {date}
 				</p>
 			</div>
 			<div className='mt-10'>
